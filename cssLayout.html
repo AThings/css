@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>前端布局</title>
+    <style>
+        article{
+            widows: 100%;
+            height: 200px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        article div{
+            height:100%;
+        }
+
+        #layout1 #leftnav{
+            width: 300px;
+            float: left;
+            background: green;
+        }
+        #layout1 #main{
+            margin-left: 300px;
+            background: rosybrown;
+        }
+
+        #layout2 #leftnav{
+            width: 300px;
+            background: green;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        #layout2 #main{
+            margin-left: 300px;
+            background: rosybrown;
+        }
+
+        #layout3 {
+            display: flex;
+        }
+        #layout3 #main{
+            flex:1;
+            background: rosybrown;
+        }
+        #layout3 #leftnav{
+            width:300px;
+            background: green;
+        }
+
+        #layout4 #leftnav{
+            width:200px;
+            float: left;
+            background: blue;
+        }
+        #layout4 #rightnav{
+            width:150px;
+            float: right;
+            background: red;
+        }
+        #layout4 #main{
+            margin-left:200px;
+            margin-right:150px;
+            background: pink;
+        }
+
+        #layout5 #leftnav{
+            width:200px;
+            background: blue;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        #layout5 #rightnav{
+            width:150px;
+            background: red;
+            position: absolute;
+            top:0;
+            right:0;
+        }
+        #layout5 #main{
+            margin-left:200px;
+            margin-right:150px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <article id='layout1'>
+        <div id='leftnav'></div>
+        <div id='main'>左为固定300px 右为自适应（浮动实现）</div>
+    </article>
+    <article id='layout2'>
+        <div id='leftnav'></div>
+        <div id='main'>左为固定300px 右为自适应（绝对定位实现）</div>
+    </article>
+    <article id='layout3'>
+        <div id='leftnav'></div>
+        <div id='main'>左为固定300px 右为自适应（flex实现）</div>
+    </article>
+    <article id='layout4'> 
+        <div id='leftnav'></div>
+        <div id='rightnav'></div>
+        <div id='main'>中间自适应 左侧200px 右侧 150px(浮动实现 中间的div在最后一个)</div>
+    </article>
+    <article id='layout5'>    
+        <div id='leftnav'></div>
+        <div id='main'>中间自适应 左侧200px 右侧 150px(绝对定位实现 dom顺序无影响)</div>
+        <div id='rightnav'></div>
+    </article>
+</body>
+</html>
