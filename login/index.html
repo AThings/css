@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form action="index.html" class='login-form'>
+
+        <h1>Login</h1>
+
+        <div class='textbox'>
+            <input type="text">
+            <span data-placeHolder="Username"></span>
+        </div>
+
+        <div class='textbox'>
+            <input type="password">
+            <span data-placeHolder="Password"></span>
+        </div>
+
+        <input type="submit" class='logbtn' value="login">
+
+        <div class='bottom-text'>
+            Don't have account? <a href="#">Sign up</a>
+        </div>
+    </form>
+
+    <script>
+        $('.textbox input').on('focus',function(){
+            $(this).addClass('focus')
+        })
+        $('.textbox input').on('blur',function(){
+            if($(this).val()===''){
+                $(this).removeClass('focus')
+            }
+        })
+    </script>
+</body>
+</html>
