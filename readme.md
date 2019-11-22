@@ -6,3 +6,5 @@ css布局的练习
 一个登录页面
 #### San-greal.html
 圣杯布局和双飞翼
+#### sticky.html
+尝试sticky定位

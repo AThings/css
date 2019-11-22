@@ -15,7 +15,8 @@
 
         <div class='textbox'>
             <input type="text">
-            <span data-placeHolder="Username"></span>
+            <span data-placeHolder="Username"></span> 
+            <!-- 为了实现input placeholder 的运动和下边框的特效添加的dom-->
         </div>
 
         <div class='textbox'>
@@ -32,11 +33,11 @@
 
     <script>
         $('.textbox input').on('focus',function(){
-            $(this).addClass('focus')
+            $(this).addClass('focus') // 添加类
         })
         $('.textbox input').on('blur',function(){
             if($(this).val()===''){
-                $(this).removeClass('focus')
+                $(this).removeClass('focus') // 有内容的时候不移出
             }
         })
     </script>
