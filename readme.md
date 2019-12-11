@@ -8,3 +8,5 @@ css布局的练习
 圣杯布局和双飞翼
 #### sticky.html
 尝试sticky定位
+### vue/test_ide
+一个选中的行会进行验证的表单
