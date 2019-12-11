@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #canvas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>canvas</h1>
+  <canvas width="800" height="600" id="canvas"></canvas>
+  <script>
+    let data = [16,14,50,40,32,30,9];
+    let month = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
+    let color = ['red', 'orange', 'blue', 'purple', 'pink', 'green', 'gold'];
+    let canvas = document.getElementById('canvas');
+    let context = canvas.getContext('2d'); // 获取canvas内容
+    for(let i = 0; i < data.length; i++) {
+      let grad = context.createLinearGradient(i * 40 + 50, 590, i * 40 + 50, 600 - data[i]*10 - 30);
+      grad.addColorStop(0, 'white');
+      grad.addColorStop(1, color[i]);
+      context.fillStyle = grad;
+      context.fillRect(i * 40 + 50, 600 - data[i]*10 - 30 ,20 , data[i]*10);
+    }
+
+    for(let i = 0; i < data.length; i++) {
+      context.beginPath();
+      context.fillStyle = 'black';
+      context.lineWidth = 1;
+      context.moveTo(i * 40 + 60, 600 - data[i]*10 - 30);
+      context.arc(i * 40 + 60, 600 - data[i]*10 - 30, 2, 0, 2*Math.PI);
+      context.fill();
+      context.stroke();
+      if (i === data.length - 1) {
+        break
+      }
+      context.beginPath();
+      context.moveTo(i * 40 + 60, 600 - data[i]*10 - 30);
+      context.strokeStyle = 'blue';
+      context.lineWidth = 1;
+      context.setLineDash([8, 8]);
+      context.lineTo((i+1) * 40 + 60, 600 - data[i + 1]*10 - 30);
+      context.stroke();
+    }
+    context.strokeStyle = 'black';
+    context.lineWidth = 2;
+    context.setLineDash([]);
+    context.beginPath();
+
+    context.moveTo(40, 15);  // 画x轴箭头
+    context.lineTo(35, 20);
+    context.moveTo(40, 15);
+    context.lineTo(45, 20);
+
+    context.moveTo(40, 15); // 画坐标系
+    context.lineTo(40, 570);
+    context.lineTo(data.length * 40 + 50, 570);
+
+
+    context.lineTo(data.length * 40 + 45, 575); // y轴箭头
+    context.moveTo(data.length * 40 + 50, 570);
+    context.lineTo(data.length * 40 + 45, 565);
+    context.stroke();
+    for(let i = 0; i <= 9; i++) {
+      context.fillText(i * 60, 10, 570 - i * 60 + 3)
+      context.beginPath();
+      context.moveTo(40, 570 - i * 60);
+      context.lineTo(30, 570 - i * 60);
+      context.stroke();
+    }
+    for(let i = 0; i < data.length; i++) {
+      context.fillText(month[i],i * 40 + 50 , 585);
+    }
+
+    let total = 0; // 总值
+    let startAng = 0; // 起始角度
+    let endAng = 0; // 结束角度
+    total = data.reduce((a,b) => {
+      return a+b
+    });
+    for(let i = 0; i < data.length; i++) {
+      endAng = (data[i] / total * 2 * Math.PI) + startAng;
+      context.beginPath();
+      context.moveTo(600, 300);
+      let grad = context.createRadialGradient(550,260,0,600,300,100);
+      grad.addColorStop(0, 'white');
+      grad.addColorStop(1, color[i]);
+      context.fillStyle = grad;
+      context.arc(600, 300, 100, startAng, endAng);
+      context.lineTo(600, 300);
+      context.fill();
+      startAng = endAng
+      context.strokeStyle = 'black';
+      context.stroke();
+    }
+  </script>
+</body>
+</html>

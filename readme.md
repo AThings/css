@@ -10,3 +10,5 @@ css布局的练习
 尝试sticky定位
 ### vue/test_ide
 一个选中的行会进行验证的表单
+### vue/canvas_chart
+canvas图表
