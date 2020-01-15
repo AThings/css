@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .active{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    a{
+      text-decoration: none;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <component-a url="/fengjialue">
+      <template v-slot:default="{ a={sex: 'man'} }">
+        {{ a.sex }}
+      </template>
+      <template v-slot:footer>
+        <div>
+          this is should in footer slot.
+        </div>
+      </template>
+      <template v-slot:header>
+        <div>
+          this is should in header slot.
+        </div>
+      </template>
+    </component-a>
+  </div>
+  <script>
+    let componentA = {
+      props:{
+        url: String
+      },
+      template: `
+      <a
+        v-bind:href="url"
+        class="nav-link"
+      >  (ºдº (==(º▽º )==) ºдº) 
+        <slot name="header"></slot>
+        <slot name="default"></slot>
+        <slot name="footer"></slot>
+      </a>
+      `,
+      data: function(){
+        return {
+          user: {
+            name: 'fengjialue',
+            what: "I'm a god!"
+          }
+        }
+      }
+    }
+    let app = new Vue({
+      el: '#app',
+      components: {
+        'component-a': componentA
+      },
+      data: {
+        list: [
+          { id:0, text: "I don't know" },
+          { id:1, text: "What do you think?" },
+          { id:3, text: "Maybe eat somethings I like" },
+          { id:4, text: "It sounds great? right?" }
+        ],
+        classObj: {
+          active: true,
+          'text': false
+        }
+      }
+    })
+  </script>
+</body>
+</html>

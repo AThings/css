@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <title>Document</title>
+  <style>
+    body{
+      height: 100vh;
+      margin: 0;
+    }
+    #app{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    #topCont{
+      width: 100%;
+      height: 400px;
+      background: blue;
+    }
+    #bottomCont{
+      background: red;
+      flex:1;
+    }
+    #bottomCont .el-table{
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" ref="appRoot">
+    <div id="topCont" ref="topCont"></div>
+    <div id="bottomCont">
+      <el-table :data="tableData" :max-height="elTableHeight">
+        <el-table-column
+          prop="id"
+          label="这个是id"
+        ></el-table-column>
+        <el-table-column
+          prop="content"
+          label="this can be everything"
+        >
+          <template slot-scope="scope">
+            <el-input v-model="scope.row.content"></el-input>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app', // css选择器
+      data: function() {
+        return {
+          tableData: [
+            { id:1, content: '测试数据' },
+            { id:2, content: '测试数据' },
+            { id:3, content: '测试数据' },
+            { id:4, content: '测试数据' },
+            { id:5, content: '测试数据' },
+            { id:6, content: '测试数据' },
+            { id:7, content: '测试数据' },
+            { id:8, content: '测试数据' },
+            { id:9, content: '测试数据' },
+            { id:10, content: '测试数据' },
+            { id:11, content: '测试数据' },
+            { id:12, content: '测试数据' },
+            { id:13, content: '测试数据' },
+            { id:14, content: '测试数据' },
+            { id:15, content: '测试数据' },
+            { id:16, content: '测试数据' },
+            { id:17, content: '测试数据' },
+            { id:18, content: '测试数据' },
+            { id:19, content: '测试数据' },
+            { id:20, content: '测试数据' },
+            { id:21, content: '测试数据' }
+          ],
+          elTableHeight: '0'
+        }
+      },
+      computed: {
+        // elTableHeight() {
+        //   console.log(document.getElementById('app').offsetHeight - document.getElementById('topCont').offsetHeight);
+        //   if (document.getElementById('app').offsetHeight && document.getElementById('topCont').offsetHeight) {
+        //     return document.getElementById('app').offsetHeight - document.getElementById('topCont').offsetHeight;
+        //   }
+        // }
+      },
+      watch: {
+        "document.getElementById('topCont').offsetHeight" (newVal) {
+          this.elTableHeight = document.getElementById('app').offsetHeight - newVal;
+        }
+      },
+      created() {
+        // this.$nextTick(() => {
+        //   console.log(this.$refs.topCont.offsetHeight);
+        //   console.log(this.$refs.appRoot.offsetHeight);
+        // })
+      }
+    })
+  </script>
+</body>
+</html>

@@ -32,6 +32,9 @@
       <el-button @click="btnClick">
         提交
       </el-button>
+      <nuxt-link to="./dragLights">
+        灯 拖拽
+      </nuxt-link>
     </el-form>
   </div>
 </template>

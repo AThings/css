@@ -15,6 +15,7 @@
   <h1>canvas</h1>
   <canvas width="800" height="600" id="canvas"></canvas>
   <script>
+    function a (){
     let data = [16,14,50,40,32,30,9];
     let month = ['一月', '二月', '三月', '四月', '五月', '六月', '七月'];
     let color = ['red', 'orange', 'blue', 'purple', 'pink', 'green', 'gold'];
@@ -97,6 +98,18 @@
       startAng = endAng
       context.strokeStyle = 'black';
       context.stroke();
+    }
+    }
+  </script>
+  <script>
+    a();
+    window.addEventListener("resize", resizeCanvas, false);
+    let canvasDom = document.getElementById("canvas");
+    function resizeCanvas(){
+      canvasDom.width = window.innerWidth;
+      canvasDom.height = window.innerHeight;
+      console.log(canvasDom.width, canvasDom.height);
+      a();
     }
   </script>
 </body>
