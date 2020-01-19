@@ -20,17 +20,17 @@
 <body>
   <div id="app">
     <component-a url="/fengjialue">
-      <template v-slot:default="{ a={sex: 'man'} }">
-        {{ a.sex }}
+      <template v-slot:default="{ a={sex: 'man', name:'_~_'} }">
+        {{ a.name }}
       </template>
       <template v-slot:footer>
         <div>
           this is should in footer slot.
         </div>
       </template>
-      <template v-slot:header>
+      <template v-slot:header="props">
         <div>
-          this is should in header slot.
+          this is should in header slot.-{{props.a.name}}
         </div>
       </template>
     </component-a>
@@ -45,8 +45,8 @@
         v-bind:href="url"
         class="nav-link"
       >  (ºдº (==(º▽º )==) ºдº) 
-        <slot name="header"></slot>
-        <slot name="default"></slot>
+        <slot name="header" :a="user"></slot>
+        <slot name="default" :a="user"></slot>
         <slot name="footer"></slot>
       </a>
       `,
